@@ -1,0 +1,6 @@
+NODESERVER 
+==========
+
+This is the simplest node server that can be made. It should llustrate the basic point.
+
+To run it, install node and call "nodejs simplehttp.js". You can send a request to the server by opening a web browser and navigating to "localhost:8080". That is all.
