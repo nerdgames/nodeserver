@@ -1,22 +1,19 @@
-// Include the http module so we can use its lib functions.
-var http = require("http");
+var http = require("http"); // Including HTTP module so we can create the server.
+var url  = require("url");  // Including URL module to parse request params.
 
 // Create the server. 
-// Function passed as parameter is called on every request made.
-// "request" variable holds all request parameters
-// "response" variable allows tou to do anything with response sent to the client.
 http.createServer(function(request, response) {
     // Attach listener and event.
-    // This event is called when client sent all data and is waiting for response.
     request.on("end", function() {
+        // Parse the request for arguments and store them in "_get".
+        var _get = url.parse(request.url, true).query;
+
         // Write headers to the response.
-        // 200 is HTTP status code (success)
-        // Second parameter holds header fields in object
-        // We are sending plain text, so Content-Type should be text/plain
         response.writeHead(200, {
             'Content-Type': 'text/plain'
         });
+        
         // Send data and end response.
-        response.end('Hello HTTP!');
+        response.end('Here are your data: ' + _get['data']);
     });
 }).listen(8080);
